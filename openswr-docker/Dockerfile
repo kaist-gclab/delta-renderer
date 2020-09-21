@@ -12,7 +12,7 @@ RUN apt-get update && \
     ghostscript environment-modules rsync ninja-build locales xvfb
 
 RUN pip3 install --upgrade pip && \
-    pip3 install mako lxml untangle six mako numpy meson
+    pip3 install mako lxml untangle six numpy meson
 
 ENV LLVM_INSTALL_VER 10.0.0
 RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_INSTALL_VER/llvm-$LLVM_INSTALL_VER.src.tar.xz && \
