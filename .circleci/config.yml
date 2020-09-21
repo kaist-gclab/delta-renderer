@@ -3,5 +3,6 @@ jobs:
   build:
     docker:
       - image: docker
+    working_directory: openswr-docker
     steps:
-      - run: echo 1
+      - run: ./build.sh
