@@ -3,6 +3,8 @@ jobs:
   build:
     docker:
       - image: docker
-    working_directory: openswr-docker
     steps:
-      - run: ./build.sh
+      - checkout
+      - run:
+          working_directory: openswr-docker
+          command: ./build.sh
