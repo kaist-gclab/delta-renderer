@@ -57,7 +57,6 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
 
 ENV LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
     GALLIUM_DRIVER=swr \
-    LIBGL_ALWAYS_SOFTWARE=true \
-    DISPLAY=:99
+    LIBGL_ALWAYS_SOFTWARE=true
 
 CMD ["/bin/bash", "-l"]
