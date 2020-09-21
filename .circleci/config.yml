@@ -2,9 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-      - image: docker
+      - image: cimg/base:2020.01
     steps:
       - checkout
+      - setup_remote_docker
       - run:
           working_directory: openswr-docker
           command: ./build.sh
