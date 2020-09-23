@@ -69,7 +69,8 @@ RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/gle
     cd glew-$GLEW_VER && cd auto && \
     make && \
     cd .. && \
-    make SYSTEM=linux-osmesa && make install && make clean
+    make SYSTEM=linux-osmesa && make install && make clean && \
+    rm -rf /glew-$GLEW_VER
 
 ENV LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
 
