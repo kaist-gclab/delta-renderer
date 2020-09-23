@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
     apt-get install -y \
-    vim git gcc g++ doxygen wget sudo curl autoconf gettext xutils-dev \
+    vim git gcc g++ gdb doxygen wget sudo curl autoconf gettext xutils-dev \
     libdrm-dev m4 pkg-config libtool bison flex zlib1g-dev cmake libgl1-mesa-dev \
     python3 python3-pip freeglut3-dev libwaffle-dev waffle-utils \
     ghostscript environment-modules rsync ninja-build locales xvfb
@@ -58,5 +58,19 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
 ENV LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
     GALLIUM_DRIVER=swr \
     LIBGL_ALWAYS_SOFTWARE=true
+
+RUN ln -s /usr/bin/python3 /usr/bin/python && \
+    ln -s /usr/bin/pip3 /usr/bin/pip
+
+ENV GLEW_VER 2.1.0
+RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/glew-$GLEW_VER.tgz && \
+    tar -xf glew-$GLEW_VER.tgz && \
+    rm glew-$GLEW_VER.tgz && \
+    cd glew-$GLEW_VER && cd auto && \
+    make && \
+    cd .. && \
+    make SYSTEM=linux-osmesa && make install && make clean
+
+ENV LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
 
 CMD ["/bin/bash", "-l"]
