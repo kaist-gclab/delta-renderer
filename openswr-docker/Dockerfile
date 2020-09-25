@@ -9,7 +9,7 @@ RUN apt-get update && \
     vim git gcc g++ gdb doxygen wget sudo curl autoconf gettext xutils-dev \
     libdrm-dev m4 pkg-config libtool bison flex zlib1g-dev cmake libgl1-mesa-dev \
     python3 python3-pip freeglut3-dev libwaffle-dev waffle-utils \
-    ghostscript environment-modules rsync ninja-build locales xvfb
+    environment-modules ninja-build libcurl4-openssl-dev
 
 RUN pip3 install --upgrade pip && \
     pip3 install mako lxml untangle six numpy meson
@@ -27,16 +27,6 @@ RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_IN
     -DLLVM_ENABLE_RTTI=1 \
     && make install -j`nproc` \
     && rm -rf /llvm-$LLVM_INSTALL_VER.src
-
-# set timezone
-ENV TZ=Asia/Seoul
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/timezone
-
-# set locale
-RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
-    dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=en_US.UTF-8
-ENV LANG en_US.UTF-8
 
 ENV MESA_VER 20.1.8
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
