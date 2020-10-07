@@ -8,6 +8,7 @@
 
 #include "renderer.h"
 #include "gmodel.h"
+#include "grenderer.h"
 
 static int viewportWidth, viewportHeight;
 static std::string inputFilePath;
@@ -58,6 +59,8 @@ int main(int argc, char *argv[])
     {
         loader->statement(line);
     }
+    auto renderer = std::make_shared<GRenderer>(model);
+    renderer->render();
 
     glFinish();
 
