@@ -14,7 +14,7 @@ RUN apt-get update && \
 RUN pip3 install --upgrade pip && \
     pip3 install mako lxml untangle six numpy meson
 
-ENV LLVM_INSTALL_VER 10.0.0
+ENV LLVM_INSTALL_VER 10.0.1
 RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_INSTALL_VER/llvm-$LLVM_INSTALL_VER.src.tar.xz && \
     tar -xf llvm-$LLVM_INSTALL_VER.src.tar.xz && \
     rm llvm-$LLVM_INSTALL_VER.src.tar.xz && \
