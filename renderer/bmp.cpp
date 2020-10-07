@@ -1,7 +1,9 @@
 #include <cstdio>
 #include <cstdlib>
+#include <string>
+#include <string_view>
 
-void writeBMP(const char *filePath, int width, int height, const char *bufferRgba)
+void writeBMP(std::string_view filePath, int width, int height, const char *bufferRgba)
 {
     int fileSize = 54 + 3 * width * height;
 
@@ -23,7 +25,7 @@ void writeBMP(const char *filePath, int width, int height, const char *bufferRgb
     bmpInfoHeader[10] = (unsigned char)(height >> 16);
     bmpInfoHeader[11] = (unsigned char)(height >> 24);
 
-    FILE *file = fopen(filePath, "wb");
+    FILE *file = fopen(std::string(filePath).c_str(), "wb");
     fwrite(bmpFileHeader, 1, 14, file);
     fwrite(bmpInfoHeader, 1, 40, file);
 

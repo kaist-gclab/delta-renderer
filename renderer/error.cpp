@@ -1,8 +1,9 @@
-#include <cstdio>
+#include <iostream>
 #include <cstdlib>
+#include <string_view>
 
-void error(const char *message)
+void error(std::string_view message)
 {
-    fprintf(stderr, "%s\n", message);
+    std::cerr << message << std::endl;
     exit(-1);
 }
