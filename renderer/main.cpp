@@ -7,6 +7,7 @@
 #include <GL/osmesa.h>
 
 #include "renderer.h"
+#include "gmodel.h"
 
 static int viewportWidth, viewportHeight;
 static std::string inputFilePath;
@@ -47,6 +48,16 @@ int main(int argc, char *argv[])
     }
 
     std::cerr << "GL_VERSION " << glGetString(GL_VERSION) << std::endl;
+
+    auto model = std::make_shared<GModel>();
+    auto loader = std::make_shared<ObjGModelLoader>(model);
+
+    std::ifstream modelFile(inputFilePath);
+    std::string line;
+    while (std::getline(modelFile, line))
+    {
+        loader->statement(line);
+    }
 
     glFinish();
 
