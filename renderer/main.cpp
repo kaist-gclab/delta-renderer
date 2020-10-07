@@ -1,13 +1,16 @@
+#include <iostream>
 #include <string>
+#include <fstream>
+#include <memory>
 
 #include <GL/gl.h>
 #include <GL/osmesa.h>
 
 #include "renderer.h"
 
-int viewportWidth, viewportHeight;
-std::string inputFilePath;
-std::string outputFilePath;
+static int viewportWidth, viewportHeight;
+static std::string inputFilePath;
+static std::string outputFilePath;
 
 void parseArgs(int argc, char *argv[])
 {
@@ -43,11 +46,11 @@ int main(int argc, char *argv[])
         error("OSMesaMakeCurrent");
     }
 
-    fprintf(stderr, "GL_VERSION %s\n", glGetString(GL_VERSION));
+    std::cerr << "GL_VERSION " << glGetString(GL_VERSION) << std::endl;
 
     glFinish();
 
-    writeBMP(outputFilePath.c_str(), viewportWidth, viewportHeight, buffer);
+    writeBMP(outputFilePath, viewportWidth, viewportHeight, buffer);
 
     free(buffer);
     OSMesaDestroyContext(ctx);
