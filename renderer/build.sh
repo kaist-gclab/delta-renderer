@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-g++ -g \
+g++ \
 main.cpp \
 bmp.cpp \
-loader.cpp \
+gmodel.cpp \
 error.cpp \
 -orenderer --std=c++17 \
 $(pkg-config --cflags --libs gl) \
