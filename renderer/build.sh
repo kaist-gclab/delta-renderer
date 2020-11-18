@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-g++ \
+g++ -g -Wall \
+-O2 \
 main.cpp \
 bmp.cpp \
 gmodel.cpp \
