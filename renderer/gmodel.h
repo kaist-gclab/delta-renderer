@@ -30,17 +30,17 @@ struct GModel
     std::vector<Face> faces;
 };
 
-class ObjGModelLoader
+class StlAsciiGModelLoader
 {
 public:
-    ObjGModelLoader(std::shared_ptr<GModel> model)
+    StlAsciiGModelLoader(std::shared_ptr<GModel> model)
         : model(model) {}
 
     std::shared_ptr<GModel> model;
     void statement(std::string_view line);
 
 private:
-    void geometricVertex(std::istream &s);
+    void vertex(std::istream &s);
     void face(std::istream &s);
     size_t getAbsoluteVertexNumber(int number);
 };
