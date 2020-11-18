@@ -4,8 +4,7 @@
 FROM ubuntu:20.04 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update; apt-get install -y \
     vim git gcc g++ gdb doxygen wget sudo curl autoconf gettext xutils-dev \
     libdrm-dev m4 pkg-config libtool bison flex zlib1g-dev cmake libgl1-mesa-dev \
     python3 python3-pip freeglut3-dev libwaffle-dev waffle-utils \
@@ -14,7 +13,7 @@ RUN apt-get update && \
 RUN pip3 install --upgrade pip && \
     pip3 install mako lxml untangle six numpy meson
 
-ENV LLVM_INSTALL_VER 10.0.1
+ENV LLVM_INSTALL_VER 10.0.0
 RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_INSTALL_VER/llvm-$LLVM_INSTALL_VER.src.tar.xz && \
     tar -xf llvm-$LLVM_INSTALL_VER.src.tar.xz && \
     rm llvm-$LLVM_INSTALL_VER.src.tar.xz && \
@@ -28,7 +27,7 @@ RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_IN
     && make install -j`nproc` \
     && rm -rf /llvm-$LLVM_INSTALL_VER.src
 
-ENV MESA_VER 20.1.9
+ENV MESA_VER 20.1.10
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     tar -xf mesa-$MESA_VER.tar.xz && \
     rm mesa-$MESA_VER.tar.xz && \
