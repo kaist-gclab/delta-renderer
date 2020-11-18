@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-./build.sh && ./renderer 1280 1024 ../assets/utah-teapot.obj ./output.bmp
+./build.sh && \
+GALLIUM_DRIVER=llvmpipe ./renderer 640 480 ../3d-model.stl ./output.bmp
