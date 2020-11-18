@@ -34,9 +34,9 @@ void writeBMP(std::string_view filePath, int width, int height, const char *buff
     {
         for (int j = 0; j < width; j++)
         {
-            bufferLine[j * 3 + 0] = bufferRgba[width * (height - 1 - i) * 4 + 0];
-            bufferLine[j * 3 + 1] = bufferRgba[width * (height - 1 - i) * 4 + 1];
-            bufferLine[j * 3 + 2] = bufferRgba[width * (height - 1 - i) * 4 + 2];
+            bufferLine[j * 3 + 0] = bufferRgba[width * i * 4 + j * 4 + 2];
+            bufferLine[j * 3 + 1] = bufferRgba[width * i * 4 + j * 4 + 1];
+            bufferLine[j * 3 + 2] = bufferRgba[width * i * 4 + j * 4 + 0];
         }
         fwrite(bufferLine, 3, width, file);
         fwrite(bmpPad, 1, (4 - (width * 3) % 4) % 4, file);
