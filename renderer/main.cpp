@@ -4,6 +4,8 @@
 #include <memory>
 
 #include <GL/gl.h>
+#include <GL/glu.h>
+#include <GL/glcorearb.h>
 #include <GL/osmesa.h>
 
 #include "renderer.h"
@@ -29,10 +31,20 @@ void parseArgs(int argc, char *argv[])
 
 int main(int argc, char *argv[])
 {
-    OSMesaContext ctx = OSMesaCreateContextExt(OSMESA_RGBA, 24, 8, 8, NULL);
+    const int attribs[] = {
+        OSMESA_FORMAT, OSMESA_RGBA,
+        OSMESA_DEPTH_BITS, 16,
+        OSMESA_STENCIL_BITS, 0,
+        OSMESA_ACCUM_BITS, 0,
+        OSMESA_PROFILE, OSMESA_COMPAT_PROFILE,
+        OSMESA_CONTEXT_MAJOR_VERSION, 3,
+        OSMESA_CONTEXT_MINOR_VERSION, 1,
+        0, 0};
+
+    OSMesaContext ctx = OSMesaCreateContextAttribs(attribs, nullptr);
     if (!ctx)
     {
-        error("OSMesaCreateContextExt");
+        error("OSMesaCreateContextAttribs");
     }
 
     parseArgs(argc, argv);
@@ -49,9 +61,11 @@ int main(int argc, char *argv[])
     }
 
     std::cerr << "GL_VERSION " << glGetString(GL_VERSION) << std::endl;
+    std::cerr << "GL_RENDERER " << glGetString(GL_RENDERER) << std::endl;
+    std::cerr << "GL_SHADING_LANGUAGE_VERSION " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 
     auto model = std::make_shared<GModel>();
-    auto loader = std::make_shared<ObjGModelLoader>(model);
+    auto loader = std::make_shared<StlAsciiGModelLoader>(model);
 
     std::ifstream modelFile(inputFilePath);
     std::string line;
@@ -59,10 +73,11 @@ int main(int argc, char *argv[])
     {
         loader->statement(line);
     }
+
+    glViewport(0, 0, viewportWidth, viewportHeight);
+
     auto renderer = std::make_shared<GRenderer>(model);
     renderer->render();
-
-    glFinish();
 
     writeBMP(outputFilePath, viewportWidth, viewportHeight, buffer);
 
