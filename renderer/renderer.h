@@ -4,5 +4,4 @@
 
 void error(std::string_view message);
 
-void writeBMP(std::string_view filePath, int width, int height, const char *bufferRgba);
-
+void writeBMP(FILE *out, int width, int height, const char *bufferRgba);

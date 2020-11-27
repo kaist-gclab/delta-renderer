@@ -1,9 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
-#include <string>
-#include <string_view>
 
-void writeBMP(std::string_view filePath, int width, int height, const char *bufferRgba)
+void writeBMP(FILE *out, int width, int height, const char *bufferRgba)
 {
     int fileSize = 54 + 3 * width * height;
 
@@ -25,9 +23,8 @@ void writeBMP(std::string_view filePath, int width, int height, const char *buff
     bmpInfoHeader[10] = (unsigned char)(height >> 16);
     bmpInfoHeader[11] = (unsigned char)(height >> 24);
 
-    FILE *file = fopen(std::string(filePath).c_str(), "wb");
-    fwrite(bmpFileHeader, 1, 14, file);
-    fwrite(bmpInfoHeader, 1, 40, file);
+    fwrite(bmpFileHeader, 1, 14, out);
+    fwrite(bmpInfoHeader, 1, 40, out);
 
     char *bufferLine = (char *)malloc(width * 3);
     for (int i = 0; i < height; i++)
@@ -38,9 +35,9 @@ void writeBMP(std::string_view filePath, int width, int height, const char *buff
             bufferLine[j * 3 + 1] = bufferRgba[width * i * 4 + j * 4 + 1];
             bufferLine[j * 3 + 2] = bufferRgba[width * i * 4 + j * 4 + 0];
         }
-        fwrite(bufferLine, 3, width, file);
-        fwrite(bmpPad, 1, (4 - (width * 3) % 4) % 4, file);
+        fwrite(bufferLine, 3, width, out);
+        fwrite(bmpPad, 1, (4 - (width * 3) % 4) % 4, out);
     }
     free(bufferLine);
-    fclose(file);
+    fclose(out);
 }

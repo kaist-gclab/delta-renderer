@@ -13,20 +13,16 @@
 #include "grenderer.h"
 
 static int viewportWidth, viewportHeight;
-static std::string inputFilePath;
-static std::string outputFilePath;
 
 void parseArgs(int argc, char *argv[])
 {
-    if (argc != 5)
+    if (argc != 3)
     {
         error("parseArgs");
     }
 
     viewportWidth = std::stoi(argv[1]);
     viewportHeight = std::stoi(argv[2]);
-    inputFilePath = std::string(argv[3]);
-    outputFilePath = std::string(argv[4]);
 }
 
 int main(int argc, char *argv[])
@@ -67,9 +63,8 @@ int main(int argc, char *argv[])
     auto model = std::make_shared<GModel>();
     auto loader = std::make_shared<StlAsciiGModelLoader>(model);
 
-    std::ifstream modelFile(inputFilePath);
     std::string line;
-    while (std::getline(modelFile, line))
+    while (std::getline(std::cin, line))
     {
         loader->statement(line);
     }
@@ -79,7 +74,7 @@ int main(int argc, char *argv[])
     auto renderer = std::make_shared<GRenderer>(model);
     renderer->render();
 
-    writeBMP(outputFilePath, viewportWidth, viewportHeight, buffer);
+    writeBMP(stdout, viewportWidth, viewportHeight, buffer);
 
     free(buffer);
     OSMesaDestroyContext(ctx);
