@@ -14,7 +14,7 @@ public:
     std::shared_ptr<GModel> model;
     GRenderer(std::shared_ptr<GModel> model)
         : model(model) {}
-    void render();
+    void render(float degree);
 
 private:
     Sphere boundingSphere();
