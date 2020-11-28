@@ -1,7 +1,7 @@
 # https://github.com/OpenSWR/docker-images/blob/master/ubuntu20.04/Dockerfile
 # https://github.com/utensils/docker-opengl
 
-FROM ubuntu:20.04 
+FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update; apt-get install -y \
@@ -45,7 +45,6 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     rm -rf /mesa-$MESA_VER
 
 ENV LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
-    GALLIUM_DRIVER=swr \
     LIBGL_ALWAYS_SOFTWARE=true
 
 RUN ln -s /usr/bin/python3 /usr/bin/python && \
