@@ -11,16 +11,19 @@
 #include "grenderer.h"
 
 static int viewportWidth, viewportHeight;
+static float degree;
 
-void parseArgs(int argc, char *argv[])
+static void parseArgs(int argc, char *argv[])
 {
-    if (argc != 3)
+    if (argc != 4)
     {
         error("parseArgs");
     }
 
     viewportWidth = std::stoi(argv[1]);
     viewportHeight = std::stoi(argv[2]);
+    degree = std::stof(argv[3]);
+}
 }
 
 int main(int argc, char *argv[])
@@ -70,7 +73,7 @@ int main(int argc, char *argv[])
     glViewport(0, 0, viewportWidth, viewportHeight);
 
     auto renderer = std::make_shared<GRenderer>(model);
-    renderer->render();
+    renderer->render(degree);
 
     writeBMP(stdout, viewportWidth, viewportHeight, buffer);
 

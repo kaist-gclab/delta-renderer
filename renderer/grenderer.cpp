@@ -19,7 +19,7 @@ std::string readShader(std::string filePath)
     return s.str();
 }
 
-void GRenderer::render()
+void GRenderer::render(float degree)
 {
     auto s = boundingSphere();
 
