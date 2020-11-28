@@ -4,8 +4,6 @@
 #include <memory>
 
 #include <GL/gl.h>
-#include <GL/glu.h>
-#include <GL/glcorearb.h>
 #include <GL/osmesa.h>
 
 #include "renderer.h"

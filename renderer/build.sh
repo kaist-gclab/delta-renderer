@@ -6,8 +6,7 @@ bmp.cpp \
 gmodel.cpp \
 error.cpp \
 grenderer.cpp \
+util.cpp \
 -orenderer --std=c++17 \
 $(pkg-config --cflags --libs gl) \
-$(pkg-config --cflags --libs osmesa) \
-$(pkg-config --cflags --libs glu) \
-$(pkg-config --cflags --libs glew)
+$(pkg-config --cflags --libs osmesa)

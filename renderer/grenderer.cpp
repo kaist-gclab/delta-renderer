@@ -9,10 +9,7 @@
 
 #define GL_GLEXT_PROTOTYPES
 #include <GL/gl.h>
-#include <GL/glext.h>
 #include <GL/osmesa.h>
-#include <GL/glcorearb.h>
-#include <GL/glu.h>
 
 std::string readShader(std::string filePath)
 {
