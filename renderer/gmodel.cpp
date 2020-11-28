@@ -40,8 +40,14 @@ static const int nil = std::numeric_limits<int>::max();
 void StlAsciiGModelLoader::face(std::istream &s)
 {
     std::string normal, s1, s2, s3;
-    s >> s1 >> s2 >> s3;
+    s >> normal >> s1 >> s2 >> s3;
     model->faces.emplace_back(model->vertices.size(),
                               model->vertices.size() + 1,
                               model->vertices.size() + 2);
+}
+
+std::ostream &operator<<(std::ostream &os, const Vertex &vertex)
+{
+    os << "(" << vertex.x << ", " << vertex.y << ", " << vertex.z << ")";
+    return os;
 }

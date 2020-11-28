@@ -3,6 +3,7 @@
 #include <string_view>
 #include <vector>
 #include <memory>
+#include <iostream>
 
 struct Vertex
 {
@@ -11,6 +12,7 @@ struct Vertex
 
     float x, y, z;
 };
+std::ostream &operator<<(std::ostream &os, const Vertex &vertex);
 
 struct Face
 {
