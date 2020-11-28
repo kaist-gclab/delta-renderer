@@ -24,6 +24,12 @@ static void parseArgs(int argc, char *argv[])
     viewportHeight = std::stoi(argv[2]);
     degree = std::stof(argv[3]);
 }
+
+static void printVersion()
+{
+    std::cerr << "GL_VERSION " << glGetString(GL_VERSION) << std::endl;
+    std::cerr << "GL_RENDERER " << glGetString(GL_RENDERER) << std::endl;
+    std::cerr << "GL_SHADING_LANGUAGE_VERSION " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 }
 
 int main(int argc, char *argv[])
@@ -57,9 +63,7 @@ int main(int argc, char *argv[])
         error("OSMesaMakeCurrent");
     }
 
-    std::cerr << "GL_VERSION " << glGetString(GL_VERSION) << std::endl;
-    std::cerr << "GL_RENDERER " << glGetString(GL_RENDERER) << std::endl;
-    std::cerr << "GL_SHADING_LANGUAGE_VERSION " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+    // printVersion();
 
     auto model = std::make_shared<GModel>();
     auto loader = std::make_shared<StlAsciiGModelLoader>(model);
