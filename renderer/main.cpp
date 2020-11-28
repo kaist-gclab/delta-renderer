@@ -37,11 +37,11 @@ int main(int argc, char *argv[])
     const int attribs[] = {
         OSMESA_FORMAT, OSMESA_RGBA,
         OSMESA_DEPTH_BITS, 16,
-        OSMESA_STENCIL_BITS, 0,
-        OSMESA_ACCUM_BITS, 0,
-        OSMESA_PROFILE, OSMESA_COMPAT_PROFILE,
+        OSMESA_STENCIL_BITS, 8,
+        OSMESA_ACCUM_BITS, 8,
+        OSMESA_PROFILE, OSMESA_CORE_PROFILE,
         OSMESA_CONTEXT_MAJOR_VERSION, 3,
-        OSMESA_CONTEXT_MINOR_VERSION, 1,
+        OSMESA_CONTEXT_MINOR_VERSION, 3,
         0, 0};
 
     OSMesaContext ctx = OSMesaCreateContextAttribs(attribs, nullptr);
