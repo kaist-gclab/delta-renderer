@@ -7,5 +7,5 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          working_directory: openswr-docker
+          working_directory: delta-renderer-base
           command: ./build.sh
