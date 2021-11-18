@@ -27,7 +27,7 @@ RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_IN
     && make install -j`nproc` \
     && rm -rf /llvm-$LLVM_INSTALL_VER.src
 
-ENV MESA_VER 20.1.10
+ENV MESA_VER 21.3.0
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     tar -xf mesa-$MESA_VER.tar.xz && \
     rm mesa-$MESA_VER.tar.xz && \
