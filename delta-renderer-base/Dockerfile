@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update; apt-get install -y \
     vim git gcc g++ gdb doxygen wget sudo curl autoconf gettext xutils-dev \
     libdrm-dev m4 pkg-config libtool bison flex zlib1g-dev cmake libgl1-mesa-dev \
-    python3 python3-pip freeglut3-dev libwaffle-dev waffle-utils \
-    environment-modules ninja-build libcurl4-openssl-dev
+    python3 python3-pip freeglut3-dev libwaffle-dev waffle-utils libunwind-dev \
+    environment-modules ninja-build libcurl4-openssl-dev libxcb-randr0-dev
 
 RUN pip3 install --upgrade pip && \
     pip3 install mako lxml untangle six numpy meson
