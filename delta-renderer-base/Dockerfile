@@ -50,7 +50,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
 RUN ln -s /usr/bin/python3 /usr/bin/python && \
     ln -s /usr/bin/pip3 /usr/bin/pip
 
-ENV GLEW_VER 2.1.0
+ENV GLEW_VER 2.2.0
 RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/glew-$GLEW_VER.tgz && \
     tar -xf glew-$GLEW_VER.tgz && \
     rm glew-$GLEW_VER.tgz && \
