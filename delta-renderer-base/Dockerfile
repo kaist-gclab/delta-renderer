@@ -48,8 +48,7 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
 ENV LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
     LIBGL_ALWAYS_SOFTWARE=true
 
-RUN ln -s /usr/bin/python3 /usr/bin/python && \
-    ln -s /usr/bin/pip3 /usr/bin/pip
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV GLEW_VER 2.2.0
 RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/glew-$GLEW_VER.tgz && \
