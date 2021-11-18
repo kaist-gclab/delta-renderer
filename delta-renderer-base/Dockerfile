@@ -36,9 +36,9 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     -Ddri-drivers= \
     -Dgallium-drivers=swrast,swr \
     -Dgallium-omx=disabled \
-    -Dosmesa=gallium \
     -Dvulkan-drivers= \
     -Dglx=gallium-xlib \
+    -Dosmesa=true \
     build && \
     ninja -C build && \
     ninja -C build install && \
