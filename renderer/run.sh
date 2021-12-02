@@ -3,7 +3,7 @@
 
 export GALLIUM_DRIVER=llvmpipe
 
-SOURCE="../big.stl"
+SOURCE="../assets/teapot.ascii.stl"
 
 ./renderer 800 800 0 < $SOURCE > ../0.bmp
 ./renderer 800 800 11.25 < $SOURCE > ../1.bmp
