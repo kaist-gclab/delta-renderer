@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cimg/base:2020.01
+      - image: cimg/base:stable
     resource_class: large
     steps:
       - checkout
