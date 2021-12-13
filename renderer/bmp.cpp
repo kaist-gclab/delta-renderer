@@ -39,5 +39,5 @@ void writeBMP(FILE *out, int width, int height, const char *bufferRgba)
         fwrite(bmpPad, 1, (4 - (width * 3) % 4) % 4, out);
     }
     free(bufferLine);
-    fclose(out);
+    fflush(out);
 }
