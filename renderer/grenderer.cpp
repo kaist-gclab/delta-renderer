@@ -85,7 +85,7 @@ void GRenderer::render(float degree)
     float distance = s.r * 2;
     float rad = degree * M_PI / 180;
     createLookAt(s.x + sin(rad) * distance, s.y, s.z + cos(rad) * distance, s.x, s.y, s.z, viewMatrix);
-    createOrthographic(-s.r, s.r, -s.r, s.r, 0, s.r * 3, projMatrix);
+    createOrthographic(s.r, -s.r, -s.r, s.r, 0, s.r * 3, projMatrix);
 
     glUniformMatrix4fv(viewMatrixLoc, 1, false, viewMatrix);
     glUniformMatrix4fv(projMatrixLoc, 1, false, projMatrix);
