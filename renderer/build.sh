@@ -7,6 +7,8 @@ gmodel.cpp \
 error.cpp \
 grenderer.cpp \
 util.cpp \
+png.cpp \
 -orenderer --std=c++17 \
 $(pkg-config --cflags --libs gl) \
-$(pkg-config --cflags --libs osmesa)
+$(pkg-config --cflags --libs osmesa) \
+-lpng
