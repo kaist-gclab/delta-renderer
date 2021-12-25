@@ -38,3 +38,4 @@ FILEEXT="png"
 ./renderer 800 800 326.25 < $SOURCE > ../29.$FILEEXT &
 ./renderer 800 800 337.5 < $SOURCE > ../30.$FILEEXT &
 ./renderer 800 800 348.75 < $SOURCE > ../31.$FILEEXT &
+wait
