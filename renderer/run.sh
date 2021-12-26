@@ -4,7 +4,7 @@ export GALLIUM_DRIVER=llvmpipe
 
 SOURCE="../assets/teapot.ascii.stl"
 
-FILEEXT="PNG"
+FILEEXT="BMP"
 
 ./renderer 800 800 0 $FILEEXT <$SOURCE >../0.$FILEEXT &
 ./renderer 800 800 11.25 $FILEEXT <$SOURCE >../1.$FILEEXT &
