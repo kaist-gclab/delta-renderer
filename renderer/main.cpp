@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <memory>
+#include <cstring>
 
 #include <GL/gl.h>
 #include <GL/osmesa.h>
@@ -12,7 +13,7 @@
 
 static int viewportWidth, viewportHeight;
 static float degree;
-static char *format;
+static int format;
 
 static void parseArgs(int argc, char *argv[])
 {
@@ -24,7 +25,19 @@ static void parseArgs(int argc, char *argv[])
     viewportWidth = std::stoi(argv[1]);
     viewportHeight = std::stoi(argv[2]);
     degree = std::stof(argv[3]);
-    format = argv[4];
+    auto formatIdentifier = argv[4];
+    if (!strcmp(formatIdentifier, "BMP"))
+    {
+        format = FORMAT_BMP;
+    }
+    else if (!strcmp(formatIdentifier, "PNG"))
+    {
+        format = FORMAT_PNG;
+    }
+    else
+    {
+        error("formatIdentifier");
+    }
 }
 
 static void printVersion()
