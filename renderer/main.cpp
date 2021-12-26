@@ -94,7 +94,18 @@ int main(int argc, char *argv[])
     auto renderer = std::make_shared<GRenderer>(model);
     renderer->render(degree);
 
-    writePNG(stdout, viewportWidth, viewportHeight, buffer);
+    if (format == FORMAT_BMP)
+    {
+        writeBMP(stdout, viewportWidth, viewportHeight, buffer);
+    }
+    else if (format == FORMAT_PNG)
+    {
+        writePNG(stdout, viewportWidth, viewportHeight, buffer);
+    }
+    else
+    {
+        error("format");
+    }
 
     free(buffer);
     OSMesaDestroyContext(ctx);
