@@ -65,6 +65,6 @@ RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/gle
 
 ENV LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
 
-ENV nvm install stable
+RUN nvm install stable
 
 CMD ["/bin/bash", "-l"]
