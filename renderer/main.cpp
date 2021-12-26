@@ -12,10 +12,11 @@
 
 static int viewportWidth, viewportHeight;
 static float degree;
+static char *format;
 
 static void parseArgs(int argc, char *argv[])
 {
-    if (argc != 4)
+    if (argc != 5)
     {
         error("parseArgs");
     }
@@ -23,6 +24,7 @@ static void parseArgs(int argc, char *argv[])
     viewportWidth = std::stoi(argv[1]);
     viewportHeight = std::stoi(argv[2]);
     degree = std::stof(argv[3]);
+    format = argv[4];
 }
 
 static void printVersion()
