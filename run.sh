@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 docker run -it \
--v $PWD:/delta \
-delta-renderer-base /bin/bash
+    -v $PWD:/delta \
+    delta-renderer-base /bin/bash
