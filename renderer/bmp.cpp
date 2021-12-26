@@ -27,7 +27,7 @@ void writeBMP(FILE *out, int width, int height, const char *bufferRgba)
     fwrite(bmpInfoHeader, 1, 40, out);
 
     char *bufferLine = (char *)malloc(width * 3);
-    for (int i = 0; i < height; i++)
+    for (int i = height - 1; 0 <= i; i--)
     {
         for (int j = 0; j < width; j++)
         {
