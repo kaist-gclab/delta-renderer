@@ -14,7 +14,7 @@ RUN apt-get update; apt-get install -y \
 RUN pip3 install --upgrade pip && \
     pip3 install mako lxml untangle six numpy meson
 
-ENV NVM_VER v0.39.1
+ENV NVM_VER v0.39.2
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VER/install.sh | bash
 
 ENV LLVM_INSTALL_VER 12.0.1
