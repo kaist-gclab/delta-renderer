@@ -30,13 +30,4 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
 ENV LD_LIBRARY_PATH=/usr/lib64:/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
     LIBGL_ALWAYS_SOFTWARE=true
 
-ENV GLEW_VER 2.2.0
-RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/glew-$GLEW_VER.tgz && \
-    tar -xf glew-$GLEW_VER.tgz && \
-    rm glew-$GLEW_VER.tgz && \
-    cd glew-$GLEW_VER && cd auto && \
-    make && \
-    cd .. && \
-    make SYSTEM=linux-osmesa && make install && make clean && \
-    rm -rf /glew-$GLEW_VER
 CMD ["/bin/bash", "-l"]
