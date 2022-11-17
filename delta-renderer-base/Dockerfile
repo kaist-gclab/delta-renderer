@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update; apt-get install -y \
     build-essential ninja-build bison flex byacc cmake pkg-config libwayland-dev \
     python3 python3-pip wayland-protocols libx11-dev libxext-dev \
-    wget libxcb-randr0-dev \
+    wget libxcb-randr0-dev libxrandr-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ENV NVM_VER v0.39.2
