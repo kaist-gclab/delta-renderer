@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update; apt-get install -y \
-    build-essential ninja-build \
+    build-essential ninja-build bison flex byacc \
     python3 python3-pip \
     wget \
     && rm -rf /var/lib/apt/lists/*
