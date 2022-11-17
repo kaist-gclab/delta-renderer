@@ -2,7 +2,7 @@
 
 export GALLIUM_DRIVER=llvmpipe
 
-SOURCE="../assets/teapot.ascii.stl"
+SOURCE="../big.stl"
 
 FILEEXT="PNG"
 
