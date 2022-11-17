@@ -26,7 +26,7 @@ RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_IN
 RUN pip3 install --upgrade pip && \
     pip3 install meson mako
 
-ENV MESA_VER 21.3.1
+ENV MESA_VER 22.2.4
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     tar -xf mesa-$MESA_VER.tar.xz && \
     rm mesa-$MESA_VER.tar.xz && \
