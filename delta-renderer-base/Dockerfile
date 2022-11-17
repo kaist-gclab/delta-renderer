@@ -4,27 +4,13 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update; apt-get install -y \
     build-essential ninja-build bison flex byacc cmake pkg-config libwayland-dev \
     python3 python3-pip wayland-protocols libx11-dev libxext-dev \
-    wget libxcb-randr0-dev libxrandr-dev libpng-dev \
+    wget libxcb-randr0-dev libxrandr-dev libpng-dev llvm-dev \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 RUN ln -s /usr/bin/python3 /usr/bin/python && \
     pip3 install --upgrade pip && \
     pip3 install meson mako
-
-# ENV LLVM_INSTALL_VER 12.0.1
-# RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_INSTALL_VER/llvm-$LLVM_INSTALL_VER.src.tar.xz && \
-#     tar -xf llvm-$LLVM_INSTALL_VER.src.tar.xz && \
-#     rm llvm-$LLVM_INSTALL_VER.src.tar.xz && \
-#     cd llvm-$LLVM_INSTALL_VER.src && mkdir build && cd build && cmake .. \
-#     -G "Unix Makefiles" \
-#     -DCMAKE_BUILD_TYPE=Release \
-#     -DLLVM_TARGETS_TO_BUILD=X86 \
-#     -DLLVM_BUILD_LLVM_DYLIB=1 \
-#     -DLLVM_LINK_LLVM_DYLIB=1 \
-#     -DLLVM_ENABLE_RTTI=1 \
-#     && make install -j`nproc` \
-#     && rm -rf /llvm-$LLVM_INSTALL_VER.src
 
 ENV MESA_VER 22.2.4
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
