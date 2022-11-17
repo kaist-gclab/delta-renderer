@@ -8,7 +8,8 @@ RUN apt-get update; apt-get install -y \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --upgrade pip && \
+RUN ln -s /usr/bin/python3 /usr/bin/python && \
+    pip3 install --upgrade pip && \
     pip3 install meson mako
 
 # ENV LLVM_INSTALL_VER 12.0.1
@@ -44,8 +45,6 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
 
 ENV LD_LIBRARY_PATH=/usr/local/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
     LIBGL_ALWAYS_SOFTWARE=true
-
-RUN ln -s /usr/bin/python3 /usr/bin/python
 
 ENV GLEW_VER 2.2.0
 RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/glew-$GLEW_VER.tgz && \
