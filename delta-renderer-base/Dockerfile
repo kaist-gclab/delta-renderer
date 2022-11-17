@@ -8,9 +8,6 @@ RUN apt-get update; apt-get install -y \
     && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-ENV NVM_VER v0.39.2
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VER/install.sh | bash
-
 RUN pip3 install --upgrade pip && \
     pip3 install meson mako
 
@@ -61,7 +58,5 @@ RUN wget https://github.com/nigels-com/glew/releases/download/glew-$GLEW_VER/gle
     rm -rf /glew-$GLEW_VER
 
 ENV LD_LIBRARY_PATH=/usr/lib64:$LD_LIBRARY_PATH
-
-RUN . ~/.nvm/nvm.sh && nvm install stable
 
 CMD ["/bin/bash", "-l"]
