@@ -17,12 +17,10 @@ RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     tar -xf mesa-$MESA_VER.tar.xz && \
     rm mesa-$MESA_VER.tar.xz && \
     cd mesa-$MESA_VER && mkdir build && meson --buildtype=release \
-    -Dplatforms=x11 \
-    -Ddri-drivers= \
-    -Dgallium-drivers=swrast,swr \
+    -Dvulkan-drivers=[] \
+    -Dgallium-drivers=swrast \
     -Dgallium-omx=disabled \
-    -Dvulkan-drivers= \
-    -Dglx=gallium-xlib \
+    -Dglx=xlib \
     -Dosmesa=true \
     build && \
     ninja -C build && \
