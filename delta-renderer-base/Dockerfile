@@ -10,21 +10,22 @@ RUN apt-get update; apt-get install -y \
 ENV NVM_VER v0.39.2
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VER/install.sh | bash
 
-ENV LLVM_INSTALL_VER 12.0.1
-RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_INSTALL_VER/llvm-$LLVM_INSTALL_VER.src.tar.xz && \
-    tar -xf llvm-$LLVM_INSTALL_VER.src.tar.xz && \
-    rm llvm-$LLVM_INSTALL_VER.src.tar.xz && \
-    cd llvm-$LLVM_INSTALL_VER.src && mkdir build && cd build && cmake .. \
-    -G "Unix Makefiles" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DLLVM_TARGETS_TO_BUILD=X86 \
-    -DLLVM_BUILD_LLVM_DYLIB=1 \
-    -DLLVM_LINK_LLVM_DYLIB=1 \
-    -DLLVM_ENABLE_RTTI=1 \
-    && make install -j`nproc` \
-    && rm -rf /llvm-$LLVM_INSTALL_VER.src
 RUN pip3 install --upgrade pip && \
     pip3 install meson mako
+
+# ENV LLVM_INSTALL_VER 12.0.1
+# RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_INSTALL_VER/llvm-$LLVM_INSTALL_VER.src.tar.xz && \
+#     tar -xf llvm-$LLVM_INSTALL_VER.src.tar.xz && \
+#     rm llvm-$LLVM_INSTALL_VER.src.tar.xz && \
+#     cd llvm-$LLVM_INSTALL_VER.src && mkdir build && cd build && cmake .. \
+#     -G "Unix Makefiles" \
+#     -DCMAKE_BUILD_TYPE=Release \
+#     -DLLVM_TARGETS_TO_BUILD=X86 \
+#     -DLLVM_BUILD_LLVM_DYLIB=1 \
+#     -DLLVM_LINK_LLVM_DYLIB=1 \
+#     -DLLVM_ENABLE_RTTI=1 \
+#     && make install -j`nproc` \
+#     && rm -rf /llvm-$LLVM_INSTALL_VER.src
 
 ENV MESA_VER 22.2.4
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
