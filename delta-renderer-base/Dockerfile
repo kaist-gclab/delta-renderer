@@ -1,6 +1,3 @@
-# https://github.com/OpenSWR/docker-images/blob/master/ubuntu20.04/Dockerfile
-# https://github.com/utensils/docker-opengl
-
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
