@@ -2,8 +2,6 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update; apt-get install -y \
-RUN pip3 install --upgrade pip && \
-    pip3 install mako lxml untangle six numpy meson
     build-essential ninja-build \
     python3 python3-pip \
     wget \
@@ -25,6 +23,8 @@ RUN wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$LLVM_IN
     -DLLVM_ENABLE_RTTI=1 \
     && make install -j`nproc` \
     && rm -rf /llvm-$LLVM_INSTALL_VER.src
+RUN pip3 install --upgrade pip && \
+    pip3 install meson mako
 
 ENV MESA_VER 21.3.1
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
