@@ -12,7 +12,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python && \
     pip3 install --upgrade pip && \
     pip3 install meson mako
 
-ENV MESA_VER 22.2.4
+ENV MESA_VER 23.3.2
 RUN wget https://archive.mesa3d.org/mesa-$MESA_VER.tar.xz && \
     tar -xf mesa-$MESA_VER.tar.xz && \
     rm mesa-$MESA_VER.tar.xz && \
