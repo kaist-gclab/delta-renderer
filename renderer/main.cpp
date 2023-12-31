@@ -99,11 +99,11 @@ int main(int argc, char *argv[])
 
     if (format == FORMAT_BMP)
     {
-        writeBMP(stdout, viewportWidth, viewportHeight, buffer);
+        writeBMP(outputFilePath.c_str(), viewportWidth, viewportHeight, buffer);
     }
     else if (format == FORMAT_PNG)
     {
-        writePNG(stdout, viewportWidth, viewportHeight, buffer);
+        writePNG(outputFilePath.c_str(), viewportWidth, viewportHeight, buffer);
     }
     else
     {
