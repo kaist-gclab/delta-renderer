@@ -14,10 +14,11 @@
 static int viewportWidth, viewportHeight;
 static float degree;
 static int format;
+static std::string inputFilePath, outputFilePath;
 
 static void parseArgs(int argc, char *argv[])
 {
-    if (argc != 5)
+    if (argc != 7)
     {
         error("parseArgs");
     }
@@ -38,6 +39,8 @@ static void parseArgs(int argc, char *argv[])
     {
         error("formatIdentifier");
     }
+    inputFilePath = argv[5];
+    outputFilePath = argv[6];
 }
 
 static void printVersion()
