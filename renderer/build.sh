@@ -8,7 +8,7 @@ g++ -g -Wall \
     grenderer.cpp \
     util.cpp \
     png.cpp \
-    -orenderer --std=c++17 \
+    -orenderer --std=c++20 \
     $(pkg-config --cflags --libs gl) \
     $(pkg-config --cflags --libs osmesa) \
     -lpng
