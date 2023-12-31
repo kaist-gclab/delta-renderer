@@ -29,7 +29,7 @@ void GRenderer::render(float degree)
     const size_t infoLogSize = 512;
     char infoLog[infoLogSize];
 
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
