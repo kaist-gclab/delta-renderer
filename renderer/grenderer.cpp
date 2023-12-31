@@ -139,7 +139,7 @@ float distSquared(const Vertex &a, const Vertex &b)
 
 Sphere GRenderer::boundingSphere()
 {
-    // Jack Ritter
+    // Jack Ritter 1990
     auto f = model->vertices.front();
     Vertex minX = f, maxX = f, minY = f, maxY = f, minZ = f, maxZ = f;
     for (const auto &v : model->vertices)
