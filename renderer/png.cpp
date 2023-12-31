@@ -2,8 +2,9 @@
 #include <cstring>
 #include <png.h>
 #include <GL/gl.h>
+#include <string>
 
-void writePNG(FILE *out, int width, int height, const char *bufferRgba)
+void writePNG(const char *outputFilePath, int width, int height, const char *bufferRgba)
 {
     png_image image;
     memset(&image, 0, sizeof(image));
@@ -14,8 +15,5 @@ void writePNG(FILE *out, int width, int height, const char *bufferRgba)
     image.format = PNG_FORMAT_RGBA;
     image.warning_or_error = 2; // error
 
-    png_image_write_to_stdio(
-        &image, out, 0, bufferRgba, width * 4 * sizeof(GLubyte), nullptr);
-
-    fflush(out);
+    png_image_write_to_file(&image, outputFilePath, 0, bufferRgba, width * 4 * sizeof(GLubyte), nullptr);
 }
