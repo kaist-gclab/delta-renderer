@@ -97,6 +97,10 @@ void GRenderer::render(float degree)
     float lightPosA[3] = {s.x + s.r * 2, s.y + s.r * 2, s.z + s.r * 2};
     float lightPosB[3] = {s.x - s.r * 2, s.y - s.r * 2, s.z - s.r * 2};
     float lightPosC[3] = {s.x + s.r * 2, s.y - s.r * 2, s.z - s.r * 2};
+    glUniform3fv(lightPosALoc, 1, lightPosA);
+    glUniform3fv(lightPosBLoc, 1, lightPosB);
+    glUniform3fv(lightPosCLoc, 1, lightPosC);
+
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glEnableVertexAttribArray(positionLoc);
