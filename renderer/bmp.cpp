@@ -1,8 +1,10 @@
 #include <cstdio>
 #include <cstdlib>
 
-void writeBMP(FILE *out, int width, int height, const char *bufferRgba)
+void writeBMP(const char *outputFilePath, int width, int height, const char *bufferRgba)
 {
+    FILE *out = fopen(outputFilePath, "wb");
+
     int fileSize = 54 + 3 * width * height;
 
     unsigned char bmpFileHeader[14] = {'B', 'M', 0, 0, 0, 0, 0, 0, 0, 0, 54, 0, 0, 0};
