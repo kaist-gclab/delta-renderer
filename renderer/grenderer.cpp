@@ -93,6 +93,10 @@ void GRenderer::render(float degree)
     glUniformMatrix4fv(viewMatrixLoc, 1, false, viewMatrix);
     glUniformMatrix4fv(projMatrixLoc, 1, false, projMatrix);
 
+    // three point lights
+    float lightPosA[3] = {s.x + s.r * 2, s.y + s.r * 2, s.z + s.r * 2};
+    float lightPosB[3] = {s.x - s.r * 2, s.y - s.r * 2, s.z - s.r * 2};
+    float lightPosC[3] = {s.x + s.r * 2, s.y - s.r * 2, s.z - s.r * 2};
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glEnableVertexAttribArray(positionLoc);
