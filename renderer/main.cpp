@@ -85,9 +85,9 @@ int main(int argc, char *argv[])
 
     auto model = std::make_shared<GModel>();
     auto loader = std::make_shared<StlAsciiGModelLoader>(model);
-
+    auto inputFileStream = std::ifstream(inputFilePath);
     std::string line;
-    while (std::getline(std::cin, line))
+    while (std::getline(inputFileStream, line))
     {
         loader->statement(line);
     }
