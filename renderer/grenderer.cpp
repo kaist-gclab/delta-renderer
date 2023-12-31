@@ -72,6 +72,9 @@ void GRenderer::render(float degree)
     GLint positionLoc = glGetAttribLocation(shaderProgram, "Position");
     GLint projMatrixLoc = glGetUniformLocation(shaderProgram, "ProjMatrix");
     GLint viewMatrixLoc = glGetUniformLocation(shaderProgram, "ViewMatrix");
+    GLint lightPosALoc = glGetUniformLocation(shaderProgram, "LightPosA");
+    GLint lightPosBLoc = glGetUniformLocation(shaderProgram, "LightPosB");
+    GLint lightPosCLoc = glGetUniformLocation(shaderProgram, "LightPosC");
 
     GLuint VBO, VAO;
     glGenVertexArrays(1, &VAO);
