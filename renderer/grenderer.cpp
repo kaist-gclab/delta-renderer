@@ -29,8 +29,12 @@ void GRenderer::render(float degree)
     const size_t infoLogSize = 512;
     char infoLog[infoLogSize];
 
-    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // black
+    glClearColor(1.0f, 1.0f, 1.0f, 1.0f); // white
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
 
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     auto vertexShaderSource = readShader("shader.vert");
@@ -69,7 +73,6 @@ void GRenderer::render(float degree)
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    GLint positionLoc = glGetAttribLocation(shaderProgram, "Position");
     GLint projMatrixLoc = glGetUniformLocation(shaderProgram, "ProjMatrix");
     GLint viewMatrixLoc = glGetUniformLocation(shaderProgram, "ViewMatrix");
     GLint lightPosALoc = glGetUniformLocation(shaderProgram, "LightPosA");
@@ -77,7 +80,7 @@ void GRenderer::render(float degree)
     GLint lightPosCLoc = glGetUniformLocation(shaderProgram, "LightPosC");
 
     GLuint VBO, VAO;
-    glGenVertexArrays(1, &VAO);
+    glGenVertexArrays(2, &VAO);
     glGenBuffers(1, &VBO);
 
     glUseProgram(shaderProgram);
@@ -87,8 +90,8 @@ void GRenderer::render(float degree)
 
     float distance = s.r * 2;
     float rad = degree * M_PI / 180;
-    createLookAt(s.x + sin(rad) * distance, s.y, s.z + cos(rad) * distance, s.x, s.y, s.z, viewMatrix);
-    createOrthographic(s.r, -s.r, -s.r, s.r, 0, s.r * 3, projMatrix);
+    createLookAt(s.x + sin(rad) * distance, s.y + s.r * 1.5, s.z + cos(rad) * distance, s.x, s.y, s.z, viewMatrix);
+    createOrthographic(s.r, -s.r, -s.r, s.r, 0, s.r * 100, projMatrix);
 
     glUniformMatrix4fv(viewMatrixLoc, 1, false, viewMatrix);
     glUniformMatrix4fv(projMatrixLoc, 1, false, projMatrix);
@@ -103,12 +106,17 @@ void GRenderer::render(float degree)
 
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    GLint positionLoc = 0;
+    GLint normalLoc = 1;
     glEnableVertexAttribArray(positionLoc);
-    glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, 0, 0);
+    glVertexAttribPointer(positionLoc, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+    glEnableVertexAttribArray(normalLoc);
+    glVertexAttribPointer(normalLoc, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void *)(sizeof(float) * 3));
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-    float vertices[9] = {};
+    float buf[18] = {};
 
     for (auto v : model->faces)
     {
@@ -116,23 +124,27 @@ void GRenderer::render(float degree)
         auto v2 = model->vertices[v.v2];
         auto v3 = model->vertices[v.v3];
 
-        vertices[0] = v1.x;
-        vertices[1] = v1.y;
-        vertices[2] = v1.z;
+        buf[0] = v1.x;
+        buf[1] = v1.y;
+        buf[2] = v1.z;
 
-        vertices[3] = v2.x;
-        vertices[4] = v2.y;
-        vertices[5] = v2.z;
+        buf[6] = v2.x;
+        buf[7] = v2.y;
+        buf[8] = v2.z;
 
-        vertices[6] = v3.x;
-        vertices[7] = v3.y;
-        vertices[8] = v3.z;
+        buf[12] = v3.x;
+        buf[13] = v3.y;
+        buf[14] = v3.z;
 
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        buf[3] = buf[9] = buf[15] = v.vn1;
+        buf[4] = buf[10] = buf[16] = v.vn2;
+        buf[5] = buf[11] = buf[17] = v.vn3;
+
+        glBufferData(GL_ARRAY_BUFFER, sizeof(buf), buf, GL_STATIC_DRAW);
         glDrawArrays(GL_TRIANGLES, 0, 3);
     }
 
-    glDeleteVertexArrays(1, &VAO);
+    glDeleteVertexArrays(2, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteProgram(shaderProgram);
 
